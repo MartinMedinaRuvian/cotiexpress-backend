@@ -1,14 +1,22 @@
-CREATE DATABASE IF NOT EXISTS somar_bd;
+CREATE DATABASE IF NOT EXISTS cotiexpress_bd;
 
-USE somar_bd;
+USE cotiexpress_bd;
 
 CREATE TABLE IF NOT EXISTS usuario(
    codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   username CHAR(200),
-   password CHAR(255)
+   username CHAR(200) NOT NULL,
+   password CHAR(255) NOT NULL,
+   tipo CHAR(1) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS persona(
+CREATE TABLE IF NOT EXISTS empresa(
+   codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   nombre CHAR(200) NOT NULL,
+   foto CHAR(200) NOT NULL,
+   direccion CHAR(200) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS vendedor(
    codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
    nombres CHAR(100) NOT NULL,
    apellidos CHAR(100) NOT NULL,
@@ -16,16 +24,20 @@ CREATE TABLE IF NOT EXISTS persona(
    telefono CHAR(50),
    email CHAR(200),
    codigo_usuario INT(50) NOT NULL,
-   tipo CHAR(1) NOT NULL DEFAULT '1',
-   CONSTRAINT persona_llave_usuario FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo)
+   codigo_empresa INT(50) NOT NULL,
+   CONSTRAINT vendedor_llave_usuario FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo),
+   CONSTRAINT vendedor_llave_empresa FOREIGN KEY (codigo_empresa) REFERENCES empresa(codigo)
 );
 
-
-CREATE TABLE IF NOT EXISTS insumo(
+CREATE TABLE IF NOT EXISTS cliente(
    codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   descripcion CHAR(200) NOT NULL,
-   stock INT(50) NOT NULL,
-   costo_unidad FLOAT NOT NULL
+   nombres CHAR(100) NOT NULL,
+   apellidos CHAR(100) NOT NULL,
+   identificacion CHAR(50) NOT NULL,
+   telefono CHAR(50),
+   direccion CHAR(200),
+   codigo_usuario INT(50) NOT NULL,
+   CONSTRAINT cliente_llave_usuario FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo)
 );
 
 CREATE TABLE IF NOT EXISTS categoria(
@@ -42,45 +54,10 @@ CREATE TABLE IF NOT EXISTS producto(
    CONSTRAINT producto_llave_categoria FOREIGN KEY (codigo_categoria) REFERENCES categoria(codigo)
 );
 
-CREATE TABLE IF NOT EXISTS producto_insumo(
+CREATE TABLE IF NOT EXISTS vendedor_producto(
    codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   codigo_vendedor INT(50) NOT NULL,
    codigo_producto INT(50) NOT NULL,
-   codigo_insumo INT(50) NOT NULL,
-   CONSTRAINT producto_insumo_llave_producto FOREIGN KEY (codigo_producto) REFERENCES producto(codigo),
-   CONSTRAINT producto_insumo_llave_insumo FOREIGN KEY (codigo_insumo) REFERENCES insumo(codigo)
-);
-
-CREATE TABLE IF NOT EXISTS pedido(
-   codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   fecha DATE,
-   hora CHAR(20),
-   cantidad INT(20) NOT NULL,
-   precio_unidad FLOAT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS pedido_producto(
-   codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   codigo_producto INT(50) NOT NULL,
-   codigo_pedido INT(50) NOT NULL,
-   CONSTRAINT pedido_producto_llave_producto FOREIGN KEY (codigo_producto) REFERENCES producto(codigo),
-   CONSTRAINT pedido_producto_llave_pedido FOREIGN KEY (codigo_pedido) REFERENCES pedido(codigo)
-);
-
-CREATE TABLE IF NOT EXISTS pedido_persona(
-   codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   codigo_persona INT(50) NOT NULL,
-   codigo_pedido INT(50) NOT NULL,
-   CONSTRAINT pedido_persona_llave_persona FOREIGN KEY (codigo_persona) REFERENCES persona(codigo),
-   CONSTRAINT pedido_persona_llave_pedido FOREIGN KEY (codigo_pedido) REFERENCES pedido(codigo)
-);
-
-CREATE TABLE IF NOT EXISTS factura(
-   numero INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   total FLOAT NOT NULL,
-   fecha DATE NOT NULL,
-   hota CHAR(20),
-   codigo_pedido_producto INT(50) NOT NULL,
-   codigo_pedido_persona INT(50) NOT NULL,
-   CONSTRAINT factura_llave_pedido_producto FOREIGN KEY (codigo_pedido_producto) REFERENCES pedido_producto(codigo),
-   CONSTRAINT factura_llave_pedido_persona FOREIGN KEY (codigo_pedido_persona) REFERENCES pedido_persona(codigo)
+   CONSTRAINT vendedor_producto_llave_vendedor FOREIGN KEY (codigo_vendedor) REFERENCES vendedor(codigo),
+   CONSTRAINT vendedor_producto_llave_producto FOREIGN KEY (codigo_producto) REFERENCES producto(codigo)
 );

@@ -1,9 +1,9 @@
-const Cliente = require('../modelo/Persona')
+const Vendedor = require('../modelo/Vendedor')
 const conexion = require('../util/conexion_mysql');
 
-const nombreTabla = 'persona';
+const nombreTabla = 'vendedor';
 
-class PersonaDAO{
+class VendedorDAO{
 
     async obtenerTodos(){
         const datos = await conexion.query('SELECT * FROM ' + nombreTabla);
@@ -11,7 +11,7 @@ class PersonaDAO{
     }
 
     async yaExiste(identificacion){
-        const obj = new Cliente();
+        const obj = new Vendedor();
         
         obj.identificacion = identificacion;
 
@@ -25,17 +25,9 @@ class PersonaDAO{
 
     async guardar(datos){
 
-        const {nombres, apellidos, identificacion, telefono, email, codigo_usuario} = datos;
-        let tipo = '1';
-    
-        const usernameUsuario = await conexion.query('SELECT username FROM usuario WHERE codigo=?', [codigo_usuario]);
-        if(usernameUsuario.length > 0){
-            if(usernameUsuario[0].username === 'admin'){
-                tipo = '2';
-            }
-        }      
-        
-        const obj = new Cliente(nombres, apellidos, identificacion, telefono, email, codigo_usuario, tipo);
+        const {nombres, apellidos, identificacion, telefono, email, codigo_usuario, codigo_empresa} = datos;
+
+        const obj = new Vendedor(nombres, apellidos, identificacion, telefono, email, codigo_usuario, codigo_empresa);
 
         const datosGuardar = {
             nombres: obj.nombres,
@@ -44,7 +36,7 @@ class PersonaDAO{
             telefono: obj.telefono,
             email: obj.email,
             codigo_usuario: obj.codigo_usuario,
-            tipo
+            codigo_empresa: codigo_empresa
         }
 
 
@@ -58,7 +50,7 @@ class PersonaDAO{
     }
 
     async yaExisteUsuario(codigoUsuario){
-        const obj = new Cliente();
+        const obj = new Vendedor();
         
         obj.codigo_usuario = codigoUsuario;
 
@@ -85,4 +77,4 @@ class PersonaDAO{
 
 }
 
-module.exports= PersonaDAO;
+module.exports= VendedorDAO;

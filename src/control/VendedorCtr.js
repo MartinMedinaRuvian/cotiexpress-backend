@@ -1,10 +1,10 @@
 const express = require('express');
 const rutas = express.Router();
 
-const InsumoDAO = require('../DAO/InsumoDAO');
+const VendedorDAO = require('../DAO/VendedorDAO');
 
 rutas.get('/', async(req, res) =>{
-   const dao = new InsumoDAO();
+   const dao = new VendedorDAO();
    try {
       const datos = await dao.obtenerTodos();
       res.status(200).json(datos);
@@ -15,7 +15,7 @@ rutas.get('/', async(req, res) =>{
 
 rutas.get('/:filtro', async(req, res) =>{
    const { filtro } = req.params
-   const dao = new InsumoDAO();
+   const dao = new VendedorDAO();
    try {
       const datos = await dao.obtenerFiltrado(filtro);
       res.status(200).json(datos);
@@ -26,10 +26,10 @@ rutas.get('/:filtro', async(req, res) =>{
 
 rutas.post('/', async (req, res)=>{
    const datos = req.body;
-   const dao = new InsumoDAO();  
+   const dao = new VendedorDAO();  
    try {  
-      if(datos.descripcion !== undefined){
-         const yaExiste = await dao.yaExiste(datos.descripcion);
+      if(datos.identificacion !== undefined){
+         const yaExiste = await dao.yaExiste(datos.identificacion);
          if(yaExiste){
             res.status(500).json({mensaje:'Ya existe'});
          }else{
@@ -50,7 +50,7 @@ rutas.post('/', async (req, res)=>{
 
 rutas.delete('/:codigo', async(req, res) =>{
    const {codigo} = req.params;
-   const dao = new InsumoDAO();
+   const dao = new VendedorDAO();
    try {
       const datos = await dao.eliminar(codigo);
       res.status(200).json(datos);
@@ -63,14 +63,10 @@ rutas.put('/:codigo', async(req, res) =>{
    const {codigo} = req.params;
    const datos = req.body;
 
-   const dao = new InsumoDAO();
+   const dao = new VendedorDAO();
    try {
       const respuesta = await dao.actualizar(codigo, datos);
-      if(respuesta){
-         res.status(200).json({mensaje:'Información actualizada satisfactoreamente'});
-      }else{
-         res.status(400).json({mensaje:'Ocurrio algo'})
-      }
+      res.status(200).json(respuesta);
    } catch (error) {
       res.status(500).json({mensaje:error})
    }

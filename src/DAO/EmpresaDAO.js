@@ -1,9 +1,9 @@
-const Insumo = require('../modelo/Insumo')
+const Empresa = require('../modelo/Empresa')
 const conexion = require('../util/conexion_mysql');
 
-const nombreTabla = 'insumo';
+const nombreTabla = 'empresa';
 
-class InsumoDAO{
+class EmpresaDAO{
 
     async obtenerTodos(){
         const datos = await conexion.query('SELECT * FROM ' + nombreTabla);
@@ -11,16 +11,16 @@ class InsumoDAO{
     }
 
     async obtenerFiltrado(filtro){
-        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE descripcion LIKE '%" + filtro + "%'");
+        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE nombre LIKE '%" + filtro + "%'");
         return datos;
     }
 
-    async yaExiste(descripcion){
-        const obj = new Insumo();
+    async yaExiste(nombre){
+        const obj = new Empresa();
         
-        obj.descripcion = descripcion;
+        obj.nombre = nombre;
 
-        const yaExiste = await conexion.query('SELECT descripcion FROM ' + nombreTabla + ' WHERE descripcion=?', [obj.descripcion]);
+        const yaExiste = await conexion.query('SELECT nombre FROM ' + nombreTabla + ' WHERE nombre=?', [obj.nombre]);
 
         if(yaExiste.length > 0){
             return true;
@@ -30,14 +30,14 @@ class InsumoDAO{
 
     async guardar(datos){
 
-        const {descripcion, stock, costoUnidad} = datos;
+        const {nombre, foto, direccion} = datos;
 
-        const obj = new Insumo(descripcion, stock, costoUnidad);
+        const obj = new Empresa(nombre, foto, direccion);
         
         const datosGuardar = {
-            descripcion: obj.descripcion,
-            stock: obj.stock,
-            costo_unidad: obj.costoUnidad
+            nombre: obj.nombre,
+            foto: obj.foto,
+            direccion: obj.direccion
         }
 
         const guardar = await conexion.query('INSERT INTO ' + nombreTabla + ' SET ?', [datosGuardar]);
@@ -50,7 +50,7 @@ class InsumoDAO{
     }
 
     async eliminar(codigo){
-        const obj = new Insumo();
+        const obj = new Empresa();
         
         obj.codigo = codigo;
 
@@ -63,8 +63,12 @@ class InsumoDAO{
     }
 
     async actualizar(codigo, datos){
-        const actualizar = await conexion.query('UPDATE ' + nombreTabla + ' SET ? WHERE codigo=?', [datos,  codigo]);
-        if(actualizar.affectedRows > 0){
+        const obj = new Empresa();
+ 
+        obj.codigo = codigo;
+
+        const actualizar = await conexion.query('UPDATE ' + nombreTabla + ' SET ? WHERE codigo=?', [datos,  obj.codigo]);
+        if(actualizar.length > 0){
             return true;
         }
         return false;
@@ -72,4 +76,4 @@ class InsumoDAO{
 
 }
 
-module.exports= InsumoDAO;
+module.exports= EmpresaDAO;
