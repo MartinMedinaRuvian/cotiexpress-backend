@@ -25,13 +25,14 @@ class UsuarioDAO{
 
     async guardar(datos){
 
-        const {username, password} = datos;
+        const {username, password, tipo} = datos;
 
-        const obj = new Usuario(username, password);
+        const obj = new Usuario(username, password, tipo);
         
         const datosGuardar = {
             username: obj.username,
-            password: obj.password
+            password: obj.password,
+            tipo: obj.tipo
         }
 
         const guardar = await conexion.query('INSERT INTO ' + nombreTabla + ' SET ?', [datosGuardar]);

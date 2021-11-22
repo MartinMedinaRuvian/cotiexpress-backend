@@ -10,6 +10,11 @@ class VendedorDAO{
         return datos;
     }
 
+    async obtenerFiltrado(filtro){
+        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE nombres LIKE '%" + filtro + "%'");
+        return datos;
+    }
+
     async yaExiste(identificacion){
         const obj = new Vendedor();
         
@@ -25,9 +30,9 @@ class VendedorDAO{
 
     async guardar(datos){
 
-        const {nombres, apellidos, identificacion, telefono, email, codigo_usuario, codigo_empresa} = datos;
+        const {nombres, apellidos, identificacion, telefono, email, codigoUsuario, codigoEmpresa} = datos;
 
-        const obj = new Vendedor(nombres, apellidos, identificacion, telefono, email, codigo_usuario, codigo_empresa);
+        const obj = new Vendedor(nombres, apellidos, identificacion, telefono, email, codigoUsuario, codigoEmpresa);
 
         const datosGuardar = {
             nombres: obj.nombres,
@@ -35,10 +40,11 @@ class VendedorDAO{
             identificacion: obj.identificacion,
             telefono: obj.telefono,
             email: obj.email,
-            codigo_usuario: obj.codigo_usuario,
-            codigo_empresa: codigo_empresa
+            codigo_usuario: obj.codigoUsuario,
+            codigo_empresa: obj.codigoEmpresa
         }
 
+        console.log(datosGuardar, 'VENDEDOR GUARDAR')
 
         const guardar = await conexion.query('INSERT INTO ' + nombreTabla + ' SET ?', [datosGuardar]);
         
@@ -67,8 +73,25 @@ class VendedorDAO{
         return datos;
     }
 
+    async buscarEmpresaPorUsuario(codigo_usuario){
+        const datos = await conexion.query('SELECT * FROM empresa WHERE codigo = (SELECT codigo_empresa FROM ' + nombreTabla + ' WHERE codigo_usuario=?)', [codigo_usuario]);
+        return datos;
+    }
+
+
     async actualizar(codigo, datos){
         const actualizar = await conexion.query('UPDATE ' + nombreTabla + ' SET ? WHERE codigo=?', [datos,  codigo]);
+        if(actualizar.affectedRows > 0){
+            return true;
+        }
+        return false;
+    }
+
+    
+    async cambiarEstado(dato){
+        const { codigo, estado } = dato;
+        const nuevoEstado = estado === '1' ? '2' : '1';
+        const actualizar = await conexion.query('UPDATE ' + nombreTabla + ' SET estado=? WHERE codigo=?', [nuevoEstado,  codigo]);
         if(actualizar.affectedRows > 0){
             return true;
         }

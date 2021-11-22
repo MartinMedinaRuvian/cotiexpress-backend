@@ -10,6 +10,11 @@ class ClienteDAO{
         return datos;
     }
 
+    async obtenerFiltrado(filtro){
+        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE nombres LIKE '%" + filtro + "%'");
+        return datos;
+    }
+
     async yaExiste(identificacion){
         const obj = new Cliente();
         
@@ -25,26 +30,25 @@ class ClienteDAO{
 
     async guardar(datos){
 
-        const {nombres, apellidos, identificacion, telefono, email, codigo_usuario} = datos;
+            const {nombres, apellidos, identificacion, telefono, direccion, codigoUsuario} = datos;
+    
+            const obj = new Cliente(nombres, apellidos, identificacion, telefono, direccion, codigoUsuario);
+    
+            const datosGuardar = {
+                nombres: obj.nombres,
+                apellidos: obj.apellidos,
+                identificacion: obj.identificacion,
+                telefono: obj.telefono,
+                direccion: obj.direccion,
+                codigo_usuario: obj.codigoUsuario
+            }
 
-        const obj = new Cliente(nombres, apellidos, identificacion, telefono, email, codigo_usuario);
-
-        const datosGuardar = {
-            nombres: obj.nombres,
-            apellidos: obj.apellidos,
-            identificacion: obj.identificacion,
-            telefono: obj.telefono,
-            email: obj.email,
-            codigo_usuario: obj.codigo_usuario
-        }
-
-
-        const guardar = await conexion.query('INSERT INTO ' + nombreTabla + ' SET ?', [datosGuardar]);
-        
-        if(guardar.affectedRows > 0){
-            return true;
-        }
-
+            console.log(datosGuardar, 'DATO GUARDAR')
+    
+            const guardarCliente = await conexion.query('INSERT INTO ' + nombreTabla + ' SET ?', [datosGuardar]);
+            if(guardarCliente.affectedRows > 0){
+                return true;
+            }
         return false;
     }
 
@@ -73,7 +77,16 @@ class ClienteDAO{
         }
         return false;
     }
-
+    
+    async cambiarEstado(dato){
+        const { codigo, estado } = dato;
+        const nuevoEstado = estado === '1' ? '2' : '1';
+        const actualizar = await conexion.query('UPDATE ' + nombreTabla + ' SET estado=? WHERE codigo=?', [nuevoEstado,  codigo]);
+        if(actualizar.affectedRows > 0){
+            return true;
+        }
+        return false;
+    }
 }
 
 module.exports= ClienteDAO;

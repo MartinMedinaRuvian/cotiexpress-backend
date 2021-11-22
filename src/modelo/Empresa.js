@@ -2,13 +2,10 @@ class Empresa {
 
     codigo;
     nombre;
-    foto;
     direccion;
 
-    constructor (codigo, nombre, foto, direccion) {
-        this.codigo = codigo;
+    constructor (nombre, direccion) {
         this.nombre = nombre;
-        this.foto = foto;
         this.direccion = direccion;
     }
     

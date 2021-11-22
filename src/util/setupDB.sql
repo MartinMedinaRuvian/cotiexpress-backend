@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS usuario(
 CREATE TABLE IF NOT EXISTS empresa(
    codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
    nombre CHAR(200) NOT NULL,
-   foto CHAR(200) NOT NULL,
    direccion CHAR(200) NOT NULL
 );
 
@@ -25,6 +24,7 @@ CREATE TABLE IF NOT EXISTS vendedor(
    email CHAR(200),
    codigo_usuario INT(50) NOT NULL,
    codigo_empresa INT(50) NOT NULL,
+   estado CHAR(1) NOT NULL DEFAULT '1',
    CONSTRAINT vendedor_llave_usuario FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo),
    CONSTRAINT vendedor_llave_empresa FOREIGN KEY (codigo_empresa) REFERENCES empresa(codigo)
 );
@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS cliente(
    telefono CHAR(50),
    direccion CHAR(200),
    codigo_usuario INT(50) NOT NULL,
+   estado CHAR(1) NOT NULL DEFAULT '1',
    CONSTRAINT cliente_llave_usuario FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo)
 );
 

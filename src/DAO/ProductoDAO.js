@@ -15,6 +15,11 @@ class ProductoDAO{
         return datos;
     }
 
+    async buscarPorUsuario(codigo_usuario){
+        const datos = await conexion.query('SELECT * FROM producto WHERE codigo = (SELECT codigo_producto FROM vendedor_producto WHERE codigo_vendedor = (SELECT codigo FROM vendedores WHERE codigo_usuario=?))', [codigo_usuario]);
+        return datos;
+    }
+
     async yaExiste(descripcion){
         const obj = new Producto();
         

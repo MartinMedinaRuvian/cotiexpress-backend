@@ -13,21 +13,22 @@ rutas.get('/', async(req, res) =>{
    }
 });
 
-rutas.get('/:filtro', async(req, res) =>{
-   const { filtro } = req.params
+rutas.get('/:codigo_usuario', async(req, res) =>{
+   const {codigo_usuario} = req.params
+   console.log(codigo_usuario)
    const dao = new ClienteDAO();
    try {
-      const datos = await dao.obtenerFiltrado(filtro);
-      res.status(200).json(datos);
+      const datos = await dao.obtener(codigo_usuario);
+      res.status(200).json(datos[0]);
    } catch (error) {
-      res.status(500).json({mensaje:error})
+      res.status(500).json({mensaje:error});
    }
 });
 
 rutas.post('/', async (req, res)=>{
    const datos = req.body;
-   const dao = new ClienteDAO();  
    try {  
+      const dao = new ClienteDAO();
       if(datos.identificacion !== undefined){
          const yaExiste = await dao.yaExiste(datos.identificacion);
          if(yaExiste){
@@ -46,6 +47,7 @@ rutas.post('/', async (req, res)=>{
    } catch (error) {
       res.status(500).json({mensaje:error});
    }
+   
 });
 
 rutas.delete('/:codigo', async(req, res) =>{
@@ -65,8 +67,23 @@ rutas.put('/:codigo', async(req, res) =>{
 
    const dao = new ClienteDAO();
    try {
-      const respuesta = await dao.actualizar(codigo, datos);
-      res.status(200).json(respuesta);
+      const correcto = await dao.actualizar(codigo, datos);
+      if(correcto){
+         res.status(200).json({mensaje:'Actualizado correctamente'});
+      }
+   } catch (error) {
+      res.status(500).json({mensaje:error})
+   }
+});
+
+rutas.post('/cambiar-estado', async(req, res) =>{
+   const dato = req.body;
+   const dao = new ClienteDAO();
+   try {
+      const correcto = await dao.cambiarEstado(dato);
+      if(correcto){
+         res.status(200).json({mensaje:'Actualizado correctamente'});
+      }
    } catch (error) {
       res.status(500).json({mensaje:error})
    }

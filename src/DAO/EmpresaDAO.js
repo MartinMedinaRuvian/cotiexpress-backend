@@ -15,6 +15,11 @@ class EmpresaDAO{
         return datos;
     }
 
+    async buscarPorCodigo(codigo){
+        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + ' WHERE codigo =?', [codigo]);
+        return datos;
+    }
+
     async yaExiste(nombre){
         const obj = new Empresa();
         
@@ -30,13 +35,12 @@ class EmpresaDAO{
 
     async guardar(datos){
 
-        const {nombre, foto, direccion} = datos;
+        const {nombre, direccion} = datos;
 
-        const obj = new Empresa(nombre, foto, direccion);
+        const obj = new Empresa(nombre, direccion);
         
         const datosGuardar = {
             nombre: obj.nombre,
-            foto: obj.foto,
             direccion: obj.direccion
         }
 
@@ -68,7 +72,8 @@ class EmpresaDAO{
         obj.codigo = codigo;
 
         const actualizar = await conexion.query('UPDATE ' + nombreTabla + ' SET ? WHERE codigo=?', [datos,  obj.codigo]);
-        if(actualizar.length > 0){
+        console.log(actualizar)
+        if(actualizar.affectedRows > 0){
             return true;
         }
         return false;

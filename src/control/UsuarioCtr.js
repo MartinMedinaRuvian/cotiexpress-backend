@@ -17,7 +17,8 @@ rutas.get('/', async(req, res) =>{
 
 rutas.post('/', async(req, res)=>{
    const dato = {
-      username: req.body.username
+      username: req.body.username,
+      tipo: req.body.tipo
     }
     try {
       dato.password = bcrypt.hashSync(req.body.password, saltRounds);      

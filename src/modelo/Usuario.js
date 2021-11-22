@@ -3,10 +3,12 @@ class Cliente {
     codigo;
     username;
     password;
+    tipo;
 
-    constructor (username, password) {
+    constructor (username, password, tipo) {
         this.username = username;
         this.password = password;
+        this.tipo = tipo;
     }
     
 }
