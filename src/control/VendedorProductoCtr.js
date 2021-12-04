@@ -1,10 +1,10 @@
 const express = require('express');
 const rutas = express.Router();
 
-const ProductoDAO = require('../DAO/ProductoDAO');
+const VendedorProductoDAO = require('../DAO/VendedorProductoDAO');
 
 rutas.get('/', async(req, res) =>{
-   const dao = new ProductoDAO();
+   const dao = new VendedorProductoDAO();
    try {
       const datos = await dao.obtenerTodos();
       res.status(200).json(datos);
@@ -15,7 +15,7 @@ rutas.get('/', async(req, res) =>{
 
 rutas.get('/:filtro', async(req, res) =>{
    const { filtro } = req.params
-   const dao = new ProductoDAO();
+   const dao = new VendedorProductoDAO();
    try {
       const datos = await dao.obtenerFiltrado(filtro);
       res.status(200).json(datos);
@@ -24,36 +24,12 @@ rutas.get('/:filtro', async(req, res) =>{
    }
 });
 
-rutas.get('/filtro-vendedor/:codigo_vendedor', async(req, res) =>{
-   const {codigo_vendedor} = req.params
-   const dao = new ProductoDAO();
-   try {
-      const datos = await dao.filtrarPorVendedor(codigo_vendedor);
-      res.status(200).json(datos);
-   } catch (error) {
-      res.status(500).json({mensaje:error});
-   }
-});
-
-rutas.post('/filtro-categoria/:codigo_categoria', async(req, res) =>{
-   const {codigo_categoria} = req.params
-   const {descripcion} = req.body
-   const dao = new ProductoDAO();
-   try {
-      const datos = await dao.filtrarPorCategoria(codigo_categoria, descripcion);
-      res.status(200).json(datos);
-   } catch (error) {
-      res.status(500).json({mensaje:error});
-   }
-});
-
 rutas.post('/', async (req, res)=>{
    const datos = req.body;
-   console.log(datos)
-   const dao = new ProductoDAO();  
+   const dao = new VendedorProductoDAO();  
    try {  
-      if(datos.descripcion !== undefined){
-         const yaExiste = await dao.yaExiste(datos.descripcion);
+      if(datos.codigoVendedor !== undefined || datos.codigoProducto !== undefined){
+         const yaExiste = await dao.yaExiste(datos.codigoVendedor, datos.codigoProducto);
          if(yaExiste){
             res.status(500).json({mensaje:'Ya existe'});
          }else{
@@ -74,7 +50,7 @@ rutas.post('/', async (req, res)=>{
 
 rutas.delete('/:codigo', async(req, res) =>{
    const {codigo} = req.params;
-   const dao = new ProductoDAO();
+   const dao = new VendedorProductoDAO();
    try {
       const datos = await dao.eliminar(codigo);
       res.status(200).json(datos);
@@ -87,14 +63,10 @@ rutas.put('/:codigo', async(req, res) =>{
    const {codigo} = req.params;
    const datos = req.body;
 
-   const dao = new ProductoDAO();
+   const dao = new VendedorProductoDAO();
    try {
       const respuesta = await dao.actualizar(codigo, datos);
-      if(respuesta){
-         res.status(200).json({mensaje:'Información actualizada satisfactoreamente'});
-      }else{
-         res.status(400).json({mensaje:'Ocurrio algo'})
-      }
+      res.status(200).json(respuesta);
    } catch (error) {
       res.status(500).json({mensaje:error})
    }

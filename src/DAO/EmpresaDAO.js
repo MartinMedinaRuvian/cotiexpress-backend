@@ -72,7 +72,7 @@ class EmpresaDAO{
         obj.codigo = codigo;
 
         const actualizar = await conexion.query('UPDATE ' + nombreTabla + ' SET ? WHERE codigo=?', [datos,  obj.codigo]);
-        console.log(actualizar)
+        
         if(actualizar.affectedRows > 0){
             return true;
         }

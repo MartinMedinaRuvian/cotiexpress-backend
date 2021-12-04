@@ -10,13 +10,30 @@ class ProductoDAO{
         return datos;
     }
 
+    async filtrarPorCategoria(codigoCategoria, descripcion){
+        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE codigo_categoria=? AND descripcion LIKE '%" + descripcion + "%'", [codigoCategoria]);
+        return datos;
+    }
+
+    async buscarProductos(codigoCategoria, codigoVendedor){
+        let datos = []
+        if(codigoCategoria && !codigoVendedor){
+            datos = await conexion.query('SELECT * FROM ' + nombreTabla + ' WHERE codigo_categoria=?', [codigoCategoria]);
+        }else if(!codigoCategoria && codigoVendedor){
+            datos = await conexion.query('SELECT * FROM producto WHERE codigo IN (SELECT codigo_producto FROM vendedor_producto WHERE codigo_vendedor = ?)', [codigo_vendedor]);
+        }else{
+
+        }
+        return datos;
+    }
+
     async obtenerFiltrado(filtro){
         const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE descripcion LIKE '%" + filtro + "%'");
         return datos;
     }
 
-    async buscarPorUsuario(codigo_usuario){
-        const datos = await conexion.query('SELECT * FROM producto WHERE codigo = (SELECT codigo_producto FROM vendedor_producto WHERE codigo_vendedor = (SELECT codigo FROM vendedores WHERE codigo_usuario=?))', [codigo_usuario]);
+    async filtrarPorVendedor(codigo_vendedor){
+        const datos = await conexion.query('SELECT * FROM producto WHERE codigo IN (SELECT codigo_producto FROM vendedor_producto WHERE codigo_vendedor = ?)', [codigo_vendedor]);
         return datos;
     }
 
