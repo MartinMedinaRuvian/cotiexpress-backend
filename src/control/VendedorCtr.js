@@ -25,12 +25,12 @@ rutas.get('/:codigo_usuario', async(req, res) =>{
    }
 });
 
-rutas.get('/buscar-empresa/:codigo_usuario', async(req, res) =>{
-   const {codigo_usuario} = req.params
-   console.log(codigo_usuario)
+rutas.get('/buscar-empresa/:codigo_producto', async(req, res) =>{
+   const {codigo_producto} = req.params
+   console.log(codigo_producto)
    const dao = new VendedorDAO();
    try {
-      const datos = await dao.buscarEmpresaPorUsuario(codigo_usuario);
+      const datos = await dao.buscarEmpresaPorCodigoProducto(codigo_producto);
       res.status(200).json(datos[0]);
    } catch (error) {
       res.status(500).json({mensaje:error});

@@ -73,8 +73,8 @@ class VendedorDAO{
         return datos;
     }
 
-    async buscarEmpresaPorUsuario(codigo_usuario){
-        const datos = await conexion.query('SELECT * FROM empresa WHERE codigo = (SELECT codigo_empresa FROM ' + nombreTabla + ' WHERE codigo_usuario=?)', [codigo_usuario]);
+    async buscarEmpresaPorCodigoProducto(codigoProducto){
+        const datos = await conexion.query('SELECT * FROM empresa WHERE codigo = (SELECT codigo_empresa FROM ' + nombreTabla + ' WHERE codigo= (SELECT codigo_vendedor FROM vendedor_producto WHERE codigo_producto=?))', [codigoProducto]);
         return datos;
     }
 
