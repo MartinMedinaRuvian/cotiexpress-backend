@@ -19,8 +19,8 @@ class ClienteDAO{
      * @param {string} filtro - Filtro correspondiente
      * @returns {cliente} - Obtengo un cliente
      */
-    async obtenerFiltrado(filtro){
-        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE nombres LIKE '%" + filtro + "%'");
+     async obtenerFiltrado(filtro){
+        const datos = await conexion.query("SELECT * FROM cliente WHERE nombres LIKE '%" + filtro + "%'");
         return datos;
     }
 

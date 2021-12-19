@@ -11,7 +11,7 @@ class VendedorDAO{
     }
 
     async obtenerFiltrado(filtro){
-        const datos = await conexion.query('SELECT * FROM ' + nombreTabla + " WHERE nombres LIKE '%" + filtro + "%'");
+        const datos = await conexion.query("SELECT * FROM vendedor WHERE nombres LIKE '%" + filtro + "%'");
         return datos;
     }
 

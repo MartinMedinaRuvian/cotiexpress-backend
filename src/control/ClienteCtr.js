@@ -13,6 +13,18 @@ rutas.get('/', async(req, res) =>{
    }
 });
 
+rutas.post('/filtro-nombres', async(req, res) =>{
+   const {nombres} = req.body
+   console.log(nombres, 'NOMBRES')
+   const dao = new ClienteDAO();
+   try {
+      const datos = await dao.obtenerFiltrado(nombres);
+      res.status(200).json(datos);
+   } catch (error) {
+      res.status(500).json({mensaje:error});
+   }
+});
+
 rutas.get('/:codigo_usuario', async(req, res) =>{
    const {codigo_usuario} = req.params
    console.log(codigo_usuario)

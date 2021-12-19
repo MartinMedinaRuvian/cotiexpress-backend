@@ -15,11 +15,22 @@ rutas.get('/', async(req, res) =>{
 
 rutas.get('/:codigo_usuario', async(req, res) =>{
    const {codigo_usuario} = req.params
-   console.log(codigo_usuario)
    const dao = new VendedorDAO();
    try {
       const datos = await dao.obtener(codigo_usuario);
       res.status(200).json(datos[0]);
+   } catch (error) {
+      res.status(500).json({mensaje:error});
+   }
+});
+
+rutas.post('/filtro-nombres', async(req, res) =>{
+   const {nombres} = req.body
+   console.log(nombres, 'NOMBRES')
+   const dao = new VendedorDAO();
+   try {
+      const datos = await dao.obtenerFiltrado(nombres);
+      res.status(200).json(datos);
    } catch (error) {
       res.status(500).json({mensaje:error});
    }

@@ -52,12 +52,13 @@ class ProductoDAO{
 
     async guardar(datos){
 
-        const {descripcion, foto, precioUnidad, codigoCategoria} = datos;
+        const {descripcion, cantidad, foto, precioUnidad, codigoCategoria} = datos;
 
-        const obj = new Producto(descripcion, foto, precioUnidad, codigoCategoria);
+        const obj = new Producto(descripcion, cantidad, foto, precioUnidad, codigoCategoria);
         
         const datosGuardar = {
             descripcion: obj.descripcion,
+            cantidad: obj.cantidad,
             foto: obj.foto,
             precio_unidad: obj.precioUnidad,
             codigo_categoria: obj.codigoCategoria
