@@ -37,6 +37,7 @@ rutas.get('/:filtro-codigo', async(req, res) =>{
 
 rutas.post('/', async (req, res)=>{
    const datos = req.body;
+   console.log(datos, 'EMPRESA GUARDAR')
    const dao = new EmpresaDAO();  
    try {  
       if(datos.nombre !== undefined){

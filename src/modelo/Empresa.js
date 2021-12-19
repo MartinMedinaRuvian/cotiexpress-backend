@@ -15,15 +15,22 @@ class Empresa {
      * @type {string}
      */
     direccion;
+    /**
+     * Telefono de la empresa
+     * @type {string}
+     */
+     telefono;
 
     /**
      * 
      * @param {string} nombre - Nombre de la empresa
      * @param {string} direccion - Dirección de la empresa
+     * @param {string} telefono - telefono de la empresa
      */
-    constructor (nombre, direccion) {
+    constructor (nombre, direccion, telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
+        this.telefono = telefono;
     }
     
 }

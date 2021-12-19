@@ -35,13 +35,14 @@ class EmpresaDAO{
 
     async guardar(datos){
 
-        const {nombre, direccion} = datos;
+        const {nombre, direccion, telefono} = datos;
 
-        const obj = new Empresa(nombre, direccion);
+        const obj = new Empresa(nombre, direccion, telefono);
         
         const datosGuardar = {
             nombre: obj.nombre,
-            direccion: obj.direccion
+            direccion: obj.direccion,
+            telefono: obj.telefono
         }
 
         const guardar = await conexion.query('INSERT INTO ' + nombreTabla + ' SET ?', [datosGuardar]);

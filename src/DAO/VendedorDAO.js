@@ -30,15 +30,14 @@ class VendedorDAO{
 
     async guardar(datos){
 
-        const {nombres, apellidos, identificacion, telefono, email, codigoUsuario, codigoEmpresa} = datos;
+        const {nombres, apellidos, identificacion, email, codigoUsuario, codigoEmpresa} = datos;
 
-        const obj = new Vendedor(nombres, apellidos, identificacion, telefono, email, codigoUsuario, codigoEmpresa);
+        const obj = new Vendedor(nombres, apellidos, identificacion, email, codigoUsuario, codigoEmpresa);
 
         const datosGuardar = {
             nombres: obj.nombres,
             apellidos: obj.apellidos,
             identificacion: obj.identificacion,
-            telefono: obj.telefono,
             email: obj.email,
             codigo_usuario: obj.codigoUsuario,
             codigo_empresa: obj.codigoEmpresa

@@ -15,6 +15,12 @@ class ProductoDAO{
         return datos;
     }
 
+    async filtrarPorCategoriaPrueba(codigoCategoria, descripcion){
+        const datos = await conexion.query("SELECT P.codigo, P.descripcion, P.cantidad, P.precio_unidad, E.codigo, E.nombre FROM producto P, empresa E, vendedor V, vendedor_producto VP WHERE E.codigo = (SELECT codigo_empresa FROM vendedor WHERE codigo_producto = (SELECT codigo_producto FROM producto WHERE codigo_categoria=? AND descripcion LIKE '%" + descripcion + "%'))", [codigoCategoria]);
+        return datos;
+    }
+
+
     async buscarProductos(codigoCategoria, codigoVendedor){
         let datos = []
         if(codigoCategoria && !codigoVendedor){

@@ -20,11 +20,6 @@ class Vendedor {
      * @type {string}
      */
     identificacion;
-    /**
-     * Teléfono del vendedor
-     * @type {string}
-     */
-    telefono;
      /**
      * Email del vendedor, donde es su domicilio
      * @type {string}
@@ -46,16 +41,14 @@ class Vendedor {
      * @param {string} nombres - Nombres del vendedor
      * @param {string} apellidos - Apellidos del vendedor
      * @param {string} identificacion - Identificación del vendedor
-     * @param {string} telefono - Teléfono del vendedor
      * @param {string} email - Email del vendedor
      * @param {int} codigoUsuario - Código del usuario con el que esta relacionado el vendedor
      * @param {int} codigoEmpresa - Código de la empresa con la que esta relacionado el vendedor
      */
-    constructor (nombres, apellidos, identificacion, telefono, email, codigoUsuario, codigoEmpresa) {
+    constructor (nombres, apellidos, identificacion, email, codigoUsuario, codigoEmpresa) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.identificacion = identificacion;
-        this.telefono = telefono;
         this.email = email;
         this.codigoUsuario = codigoUsuario;
         this.codigoEmpresa = codigoEmpresa;

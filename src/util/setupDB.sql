@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 CREATE TABLE IF NOT EXISTS empresa(
    codigo INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
    nombre CHAR(200) NOT NULL,
+   telefono CHAR(50),
    direccion CHAR(200) NOT NULL
 );
 
@@ -20,7 +21,6 @@ CREATE TABLE IF NOT EXISTS vendedor(
    nombres CHAR(100) NOT NULL,
    apellidos CHAR(100) NOT NULL,
    identificacion CHAR(50) NOT NULL,
-   telefono CHAR(50),
    email CHAR(200),
    codigo_usuario INT(50) NOT NULL,
    codigo_empresa INT(50) NOT NULL,
