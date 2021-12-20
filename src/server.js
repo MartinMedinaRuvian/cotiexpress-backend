@@ -39,6 +39,10 @@ const productoRuta = require('./control/ProductoCtr')
 const subirArchivosRuta = require('./control/SubirArchivosCtr')
 const empresaRuta = require('./control/EmpresaCtr')
 const vendedorProducto = require('./control/VendedorProductoCtr')
+const pedidoRuta = require('./control/PedidoCtr')
+const pedidoClienteRuta = require('./control/PedidoClienteCtr')
+const pedidoVendedorRuta = require('./control/PedidoVendedorCtr')
+const pedidoProductoRuta = require('./control/PedidoProductoCtr')
 
 /**
  * configuro las rutas del servidor
@@ -51,5 +55,9 @@ app.use('/productos', productoRuta)
 app.use('/subir', subirArchivosRuta)
 app.use('/empresas', empresaRuta)
 app.use('/vendedor-producto', vendedorProducto)
+app.use('/pedido', pedidoRuta)
+app.use('/pedido-cliente', pedidoClienteRuta)
+app.use('/pedido-vendedor', pedidoVendedorRuta)
+app.use('/pedido-producto', pedidoProductoRuta)
 
 module.exports = app;

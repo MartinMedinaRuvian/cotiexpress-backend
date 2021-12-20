@@ -34,9 +34,10 @@ class FacturaDAO{
 
         const obj = new Factura(total, fecha, hora, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente);
         
+        let fecha= new Date();
         const datosGuardar = {
             total: obj.total,
-            fecha: obj.fecha,
+            fecha: fecha,
             hora: obj.hora,
             codigoPedidoProducto: obj.codigoPedidoProducto,
             codigoPedidoVendedor: obj.codigoPedidoVendedor,
