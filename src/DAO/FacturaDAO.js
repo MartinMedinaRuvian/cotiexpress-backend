@@ -30,19 +30,22 @@ class FacturaDAO{
 
     async guardar(datos){
 
-        const {total, fecha, hora, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente} = datos;
+        const {total, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente} = datos;
 
-        const obj = new Factura(total, fecha, hora, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente);
+        const obj = new Factura(total, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente);
         
         let fecha= new Date();
+        let hora = fecha.getHours() + ':' + fecha.getMinutes() + ':' + fecha.getSeconds();
+
         const datosGuardar = {
             total: obj.total,
             fecha: fecha,
-            hora: obj.hora,
-            codigoPedidoProducto: obj.codigoPedidoProducto,
-            codigoPedidoVendedor: obj.codigoPedidoVendedor,
-            codigoPedidoCliente: obj.codigoPedidoCliente
+            hora: hora,
+            codigo_pedido_producto: obj.codigoPedidoProducto,
+            codigo_pedido_vendedor: obj.codigoPedidoVendedor,
+            codigo_pedido_cliente: obj.codigoPedidoCliente
         }
+        console.log(datosGuardar, 'FACTURA GUARDAR')
 
         const guardar = await conexion.query('INSERT INTO ' + nombreTabla + ' SET ?', [datosGuardar]);
         

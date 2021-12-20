@@ -39,14 +39,13 @@ class Factura {
 
     /**
      * 
-     * @param {string} fecha - Fecha de la factura
-     * @param {string} hora - Hora de la factura
-     * @param {int} codigoPedidoProducto - Código del pedido producto
-     * @param {int} codigoPedidoVendedor - Código del pedido vendedor
-     * @param {int} codigoPedidoCliente - Código del pedido cliente
+     * @param {float} total 
+     * @param {int} codigoPedidoProducto 
+     * @param {int} codigoPedidoVendedor 
+     * @param {int} codigoPedidoCliente 
      */
-    constructor (fecha, hora, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente) {
-        this.fecha = fecha;
+    constructor (total, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente) {
+        this.total = total;
         this.codigoPedidoProducto = codigoPedidoProducto;
         this.codigoPedidoVendedor = codigoPedidoVendedor;
         this.codigoPedidoCliente = codigoPedidoCliente;

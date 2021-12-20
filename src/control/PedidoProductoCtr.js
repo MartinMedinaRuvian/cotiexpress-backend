@@ -29,17 +29,12 @@ rutas.post('/', async (req, res)=>{
    const dao = new PedidoProductoDAO();  
    try {  
       if(datos.codigoProducto !== undefined || datos.codigoPedido !== undefined){
-         const yaExiste = await dao.yaExiste(datos.codigoProducto, datos.codigoPedido);
-         if(yaExiste){
-            res.status(500).json({mensaje:'Ya existe'});
-         }else{
             const codigoDatoGuardado = await dao.guardar(datos);  
             if(codigoDatoGuardado !== -1){
                res.status(200).json({
                   codigo: codigoDatoGuardado
                });
             }
-         }
       }else{
          res.status(500).json({mensaje:'Ingrese los datos'});
       }

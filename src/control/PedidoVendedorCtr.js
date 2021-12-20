@@ -27,19 +27,15 @@ rutas.get('/:filtro', async(req, res) =>{
 rutas.post('/', async (req, res)=>{
    const datos = req.body;
    const dao = new PedidoVendedorDAO();  
+   console.log(datos)
    try {  
       if(datos.codigoVendedor !== undefined || datos.codigoPedido !== undefined){
-         const yaExiste = await dao.yaExiste(datos.codigoVendedor, datos.codigoPedido);
-         if(yaExiste){
-            res.status(500).json({mensaje:'Ya existe'});
-         }else{
             const codigoDatoGuardado = await dao.guardar(datos);  
             if(codigoDatoGuardado !== -1){
                res.status(200).json({
                   codigo: codigoDatoGuardado
                });
             }
-         }
       }else{
          res.status(500).json({mensaje:'Ingrese los datos'});
       }

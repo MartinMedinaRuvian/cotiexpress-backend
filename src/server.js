@@ -43,6 +43,7 @@ const pedidoRuta = require('./control/PedidoCtr')
 const pedidoClienteRuta = require('./control/PedidoClienteCtr')
 const pedidoVendedorRuta = require('./control/PedidoVendedorCtr')
 const pedidoProductoRuta = require('./control/PedidoProductoCtr')
+const facturaRuta = require('./control/FacturaCtr')
 
 /**
  * configuro las rutas del servidor
@@ -59,5 +60,6 @@ app.use('/pedido', pedidoRuta)
 app.use('/pedido-cliente', pedidoClienteRuta)
 app.use('/pedido-vendedor', pedidoVendedorRuta)
 app.use('/pedido-producto', pedidoProductoRuta)
+app.use('/factura', facturaRuta)
 
 module.exports = app;

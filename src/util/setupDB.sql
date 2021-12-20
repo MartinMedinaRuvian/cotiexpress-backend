@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS factura(
    numero INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
    total FLOAT NOT NULL,
    fecha DATE NOT NULL,
-   hota CHAR(20),
+   hora CHAR(20),
    codigo_pedido_producto INT(50) NOT NULL,
    codigo_pedido_vendedor INT(50) NOT NULL,
    codigo_pedido_cliente INT(50) NOT NULL,

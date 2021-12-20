@@ -15,21 +15,15 @@ class PedidoVendedorDAO{
         return datos;
     }
 
-    async yaExiste(codigoVendedor, codigoProducto){
-
-        const yaExiste = await conexion.query('SELECT codigo FROM ' + nombreTabla + ' WHERE codigo_vendedor=? AND codigo_producto=?', [codigoVendedor, codigoProducto]);
-
-        if(yaExiste.length > 0){
-            return true;
-        }
-        return false;
-    }
-
     async guardar(datos){
 
-        const {codigoVendedor, codigoPedido} = datos;
+        const {codigoEmpresa, codigoPedido} = datos;
 
-        const obj = new PedidoVendedor(codigoVendedor, codigoPedido);
+        const codigoVendedor = await conexion.query("SELECT codigo FROM vendedor WHERE codigo_empresa = ?", [codigoEmpresa]);
+
+        const codigoVendedorGuardar = codigoVendedor[0].codigo;
+
+        const obj = new PedidoVendedor(codigoVendedorGuardar, codigoPedido);
         
         const datosGuardar = {
             codigo_vendedor: obj.codigoVendedor,

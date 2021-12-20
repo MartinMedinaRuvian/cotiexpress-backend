@@ -15,16 +15,6 @@ class PedidoClienteDAO{
         return datos;
     }
 
-    async yaExiste(codigoVendedor, codigoProducto){
-
-        const yaExiste = await conexion.query('SELECT codigo FROM ' + nombreTabla + ' WHERE codigo_vendedor=? AND codigo_producto=?', [codigoVendedor, codigoProducto]);
-
-        if(yaExiste.length > 0){
-            return true;
-        }
-        return false;
-    }
-
     async guardar(datos){
 
         const {codigoCliente, codigoPedido} = datos;
