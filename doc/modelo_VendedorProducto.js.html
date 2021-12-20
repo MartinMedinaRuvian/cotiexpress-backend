@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modelo/Usuario.js</title>
+    <title>JSDoc: Source: modelo/VendedorProducto.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modelo/Usuario.js</h1>
+    <h1 class="page-title">Source: modelo/VendedorProducto.js</h1>
 
     
 
@@ -26,47 +26,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>class Cliente {
+            <pre class="prettyprint source linenums"><code>class VendedorProducto {
 
     /**
-     * codigo único para el usuario, autogenerado por el gestor de la base de datos Mysql.
+     * código único para la categoría, autogenerado por el gestor de la base de datos Mysql.
      * @type {int}
      */
     codigo;
     /**
-     * Nombre del usuario para ingresar a la aplicación. 
-     * @type {string}
+     * Código del producto
+     * @type {int}
      */
-    username;
+    codigoVendedor;
     /**
-     * Contraseña del usuario para ingresar a la aplicación. 
-     * @type {string}
+     * Código del producto
+     * @type {int}
      */
-    password;
-    /**
-     *  El tipo es para identificar los roles correspondientes con el que se registra un usuario, existen 3 tipos:
-     *  TIPO 1: CLIENTE
-     *  TIPO 2: VENDEDOR
-     *  TIPO 3: ADMIN
-     * @type {string}
-     */
-    tipo;
+    codigoProducto;
 
     /**
      * 
-     * @param {string} username - Nombre del usuario 
-     * @param {string} password - Contraseña del usuario 
-     * @param {string} tipo - El tipo de usuario correpondiente
+     * @param {int} codigoVendedor 
+     * @param {int} codigoProducto 
      */
-    constructor (username, password, tipo) {
-        this.username = username;
-        this.password = password;
-        this.tipo = tipo;
+    constructor (codigoVendedor, codigoProducto) {
+        this.codigoVendedor = codigoVendedor;
+        this.codigoProducto = codigoProducto;
     }
     
 }
 
-module.exports= Cliente;</code></pre>
+module.exports= VendedorProducto;</code></pre>
         </article>
     </section>
 

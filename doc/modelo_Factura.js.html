@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modelo/Usuario.js</title>
+    <title>JSDoc: Source: modelo/Factura.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modelo/Usuario.js</h1>
+    <h1 class="page-title">Source: modelo/Factura.js</h1>
 
     
 
@@ -26,47 +26,63 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>class Cliente {
+            <pre class="prettyprint source linenums"><code>class Factura {
 
     /**
-     * codigo único para el usuario, autogenerado por el gestor de la base de datos Mysql.
+     * código único para la factura, autogenerado por el gestor de la base de datos Mysql.
      * @type {int}
      */
-    codigo;
+    numero;
     /**
-     * Nombre del usuario para ingresar a la aplicación. 
+     * Total de la factura
+     * @type {float}
+     */
+    total;
+    /**
+     * Fecha de la factura
      * @type {string}
      */
-    username;
+     fecha;
     /**
-     * Contraseña del usuario para ingresar a la aplicación. 
+     * Hora de la factura
      * @type {string}
      */
-    password;
+    hora;
     /**
-     *  El tipo es para identificar los roles correspondientes con el que se registra un usuario, existen 3 tipos:
-     *  TIPO 1: CLIENTE
-     *  TIPO 2: VENDEDOR
-     *  TIPO 3: ADMIN
-     * @type {string}
+     * Código del pedido producto
+     * @type {int}
      */
-    tipo;
+     codigoPedidoProducto;
+    /**
+     * Código del pedido vendedor
+     * @type {int}
+     */
+     codigoPedidoVendedor;
+    /**
+     * Código del pedido cliente
+     * @type {int}
+     */
+     codigoPedidoCliente;
+
 
     /**
      * 
-     * @param {string} username - Nombre del usuario 
-     * @param {string} password - Contraseña del usuario 
-     * @param {string} tipo - El tipo de usuario correpondiente
+     * @param {string} fecha - Fecha de la factura
+     * @param {string} hora - Hora de la factura
+     * @param {int} codigoPedidoProducto - Código del pedido producto
+     * @param {int} codigoPedidoVendedor - Código del pedido vendedor
+     * @param {int} codigoPedidoCliente - Código del pedido cliente
      */
-    constructor (username, password, tipo) {
-        this.username = username;
-        this.password = password;
-        this.tipo = tipo;
+    constructor (fecha, hora, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente) {
+        this.fecha = fecha;
+        this.codigoPedidoProducto = codigoPedidoProducto;
+        this.codigoPedidoVendedor = codigoPedidoVendedor;
+        this.codigoPedidoCliente = codigoPedidoCliente;
     }
     
 }
 
-module.exports= Cliente;</code></pre>
+module.exports= Factura;</code></pre>
         </article>
     </section>
 

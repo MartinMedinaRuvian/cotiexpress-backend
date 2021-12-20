@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Producto</title>
+    <title>JSDoc: Class: Factura</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Producto</h1>
+    <h1 class="page-title">Class: Factura</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Producto<span class="signature">(descripcion, cantidad, foto, precioUnidad, codigoCategoria)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Factura<span class="signature">(fecha, hora, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="Producto"><span class="type-signature"></span>new Producto<span class="signature">(descripcion, cantidad, foto, precioUnidad, codigoCategoria)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Factura"><span class="type-signature"></span>new Factura<span class="signature">(fecha, hora, codigoPedidoProducto, codigoPedidoVendedor, codigoPedidoCliente)</span><span class="type-signature"></span></h4>
     
 
     
@@ -81,7 +81,7 @@
 
         <tr>
             
-                <td class="name"><code>descripcion</code></td>
+                <td class="name"><code>fecha</code></td>
             
 
             <td class="type">
@@ -97,37 +97,14 @@
 
             
 
-            <td class="description last">Descripción del producto</td>
+            <td class="description last">Fecha de la factura</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cantidad</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">int</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Cantidad del producto</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>foto</code></td>
+                <td class="name"><code>hora</code></td>
             
 
             <td class="type">
@@ -143,37 +120,14 @@
 
             
 
-            <td class="description last">Imagen representativa del producto</td>
+            <td class="description last">Hora de la factura</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>precioUnidad</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">float</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Precio unidad del producto</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>codigoCategoria</code></td>
+                <td class="name"><code>codigoPedidoProducto</code></td>
             
 
             <td class="type">
@@ -189,7 +143,53 @@
 
             
 
-            <td class="description last">Código de la categoría con la cual esta relacionado el producto</td>
+            <td class="description last">Código del pedido producto</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>codigoPedidoVendedor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Código del pedido vendedor</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>codigoPedidoCliente</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Código del pedido cliente</td>
         </tr>
 
     
@@ -230,7 +230,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modelo_Producto.js.html">modelo/Producto.js</a>, <a href="modelo_Producto.js.html#line42">line 42</a>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -280,13 +280,229 @@
 
         
             
-<h4 class="name" id="cantidad"><span class="type-signature"></span>cantidad<span class="type-signature"> :string</span></h4>
+<h4 class="name" id="codigoPedidoCliente"><span class="type-signature"></span>codigoPedidoCliente<span class="type-signature"> :int</span></h4>
 
 
 
 
 <div class="description">
-    Cantidad del producto
+    Código del pedido cliente
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">int</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line37">line 37</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="codigoPedidoProducto"><span class="type-signature"></span>codigoPedidoProducto<span class="type-signature"> :int</span></h4>
+
+
+
+
+<div class="description">
+    Código del pedido producto
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">int</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="codigoPedidoVendedor"><span class="type-signature"></span>codigoPedidoVendedor<span class="type-signature"> :int</span></h4>
+
+
+
+
+<div class="description">
+    Código del pedido vendedor
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">int</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="fecha"><span class="type-signature"></span>fecha<span class="type-signature"> :string</span></h4>
+
+
+
+
+<div class="description">
+    Fecha de la factura
 </div>
 
 
@@ -334,7 +550,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modelo_Producto.js.html">modelo/Producto.js</a>, <a href="modelo_Producto.js.html#line17">line 17</a>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -352,157 +568,13 @@
 
         
             
-<h4 class="name" id="codigo"><span class="type-signature"></span>codigo<span class="type-signature"> :int</span></h4>
+<h4 class="name" id="hora"><span class="type-signature"></span>hora<span class="type-signature"> :string</span></h4>
 
 
 
 
 <div class="description">
-    código único para el producto, autogenerado por el gestor de la base de datos Mysql.
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">int</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modelo_Producto.js.html">modelo/Producto.js</a>, <a href="modelo_Producto.js.html#line7">line 7</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="codigoCategoria"><span class="type-signature"></span>codigoCategoria<span class="type-signature"> :int</span></h4>
-
-
-
-
-<div class="description">
-    Código de la categoría con la cual esta relacionado el producto
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">int</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modelo_Producto.js.html">modelo/Producto.js</a>, <a href="modelo_Producto.js.html#line32">line 32</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="descripcion"><span class="type-signature"></span>descripcion<span class="type-signature"> :string</span></h4>
-
-
-
-
-<div class="description">
-    Descripción del producto
+    Hora de la factura
 </div>
 
 
@@ -550,7 +622,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modelo_Producto.js.html">modelo/Producto.js</a>, <a href="modelo_Producto.js.html#line12">line 12</a>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -568,13 +640,13 @@
 
         
             
-<h4 class="name" id="foto"><span class="type-signature"></span>foto<span class="type-signature"> :int</span></h4>
+<h4 class="name" id="numero"><span class="type-signature"></span>numero<span class="type-signature"> :int</span></h4>
 
 
 
 
 <div class="description">
-    Foto del producto
+    código único para la factura, autogenerado por el gestor de la base de datos Mysql.
 </div>
 
 
@@ -622,7 +694,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modelo_Producto.js.html">modelo/Producto.js</a>, <a href="modelo_Producto.js.html#line22">line 22</a>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -640,13 +712,13 @@
 
         
             
-<h4 class="name" id="precioUnidad"><span class="type-signature"></span>precioUnidad<span class="type-signature"> :float</span></h4>
+<h4 class="name" id="total"><span class="type-signature"></span>total<span class="type-signature"> :float</span></h4>
 
 
 
 
 <div class="description">
-    Precio unidad del producto
+    Total de la factura
 </div>
 
 
@@ -694,7 +766,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modelo_Producto.js.html">modelo/Producto.js</a>, <a href="modelo_Producto.js.html#line27">line 27</a>
+        <a href="modelo_Factura.js.html">modelo/Factura.js</a>, <a href="modelo_Factura.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
