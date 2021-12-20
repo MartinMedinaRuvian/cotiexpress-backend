@@ -35,6 +35,17 @@ rutas.get('/filtro-vendedor/:codigo_vendedor', async(req, res) =>{
    }
 });
 
+rutas.get('/filtro-empresa/:codigo_empresa', async(req, res) =>{
+   const {codigo_empresa} = req.params
+   const dao = new ProductoDAO();
+   try {
+      const datos = await dao.filtrarPorCodigoEmpresa(codigo_empresa);
+      res.status(200).json(datos);
+   } catch (error) {
+      res.status(500).json({mensaje:error});
+   }
+});
+
 rutas.post('/filtro-categoria/:codigo_categoria', async(req, res) =>{
    const {codigo_categoria} = req.params
    const {descripcion} = req.body

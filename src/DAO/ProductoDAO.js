@@ -43,6 +43,11 @@ class ProductoDAO{
         return datos;
     }
 
+    async filtrarPorCodigoEmpresa(codigo_empresa){
+        const datos = await conexion.query('SELECT * FROM producto WHERE codigo IN (SELECT codigo_producto FROM vendedor_producto WHERE codigo_vendedor = (SELECT codigo FROM vendedor WHERE codigo_empresa = ?))', [codigo_empresa]);
+        return datos;
+    }
+
     async yaExiste(descripcion){
         const obj = new Producto();
         
